@@ -1,0 +1,2 @@
+# wordle
+Javascript project

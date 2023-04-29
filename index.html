@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Wordle Game</h1>
+
+    <div class="guess-container">
+        <div class="grid">
+            <div class="box wrong"></div>
+            <div class="box right"></div>
+            <div class="box">A</div>
+            <div class="box">B</div>
+            <div class="box"></div>
+            <div class="box wrong"></div>
+            <div class="box right"></div>
+            <div class="box">A</div>
+            <div class="box">B</div>
+            <div class="box"></div>
+            <div class="box wrong"></div>
+            <div class="box right"></div>
+            <div class="box">A</div>
+            <div class="box">B</div>
+            <div class="box"></div>
+            <div class="box wrong"></div>
+            <div class="box right"></div>
+            <div class="box">A</div>
+            <div class="box">B</div>
+            <div class="box"></div>
+        </div>
+    </div>
+
+
+    <div class="keyboard" data-keyboard>
+        <div class="key-container">
+            <button class="key" onclick="display('Q')">Q</button>
+            <button class="key" onclick="display('W')">W</button>
+            <button class="key" onclick="display('E')">E</button>
+            <button class="key" onclick="display('R')">R</button>
+            <button class="key" onclick="display('T')">T</button>
+            <button class="key" onclick="display('Y')">Y</button>
+            <button class="key" onclick="display('U')">U</button>
+            <button class="key" onclick="display('I')">I</button>
+            <button class="key" onclick="display('O')">O</button>
+            <button class="key" onclick="display('P')">P</button>
+        </div>
+
+        <div class="key-container">
+            <div class="space"></div>
+            <button class="key" onclick="display('A')">A</button>
+            <button class="key" onclick="display('S')">S</button>
+            <button class="key" onclick="display('D')">D</button>
+            <button class="key" onclick="display('F')">F</button>
+            <button class="key" onclick="display('G')">G</button>
+            <button class="key" onclick="display('H')">H</button>
+            <button class="key" onclick="display('J')">J</button>
+            <button class="key" onclick="display('K')">K</button>
+            <button class="key" onclick="display('L')">L</button>
+            <div class="space"></div>
+        </div>
+         
+         <div class="key-container">
+             <button class="large-key">Enter</button>
+             <button class="key" onclick="display('Z')">Z</button>
+             <button class="key" onclick="display('X')">X</button>
+             <button class="key" onclick="display('C')">C</button>
+             <button class="key" onclick="display('V')">V</button>
+             <button class="key" onclick="display('B')">B</button>
+             <button class="key" onclick="display('N')">N</button>
+             <button class="key" onclick="display('M')">M</button>
+             <button class="large-key" onclick="display('')">Del</button>
+         </div>
+    </div>
+
+    <script src="apps.js" type="module"></script>
+</body>
+</html>

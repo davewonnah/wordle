@@ -1,10 +1,9 @@
-body{
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    background-color: var(--default);
 }
 
 :root{
@@ -12,82 +11,275 @@ body{
     --empty: #3a3a3c;
     --wrong: #b59f3b;
     --right: #538d4e;
-}
-  
-h1{
-    text-align: center;
-    margin-top: 0;
-    color: #fff;
+    --key-bg: #818384;
+    --border-active: #565758;
 }
 
-.keyboard{
+html, body{
+    height: 100%;
+}
+
+body{
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--default);
+    color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .25em;
-    margin-top: 55px;
-    justify-content: center;
+    overflow: hidden;
 }
-.key-container{
-    display: flex;
-    gap: 4px;
-    justify-content: center;
-}
-.key{
-    padding: 0.3rem;
-    font-size: 1.5rem;
-    color: var(--default);
-    border: none;
-    border-radius: 5px;
+
+/* ── Header ── */
+header{
+    width: 100%;
     text-align: center;
-    cursor: pointer;
-    outline: none;
-}
-.large-key{
-    padding: 0.3rem;
-    font-size: 1.25rem;
-    color: var(--default);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--empty);
 }
 
+header h1{
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
 
-.guess-container{
-    display: grid;
+/* ── Game area (fills space between header and keyboard) ── */
+.game-area{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     width: 100%;
-    flex-grow: 1;
-    height: 300px;
+    max-width: 500px;
+    padding: 10px 0;
 }
+
+/* ── Grid ── */
+.guess-container{
+    display: flex;
+    justify-content: center;
+}
+
 .grid{
     display: grid;
-    grid-template-columns: repeat(5, auto);
-    grid-template-rows: repeat(6, auto);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
 }
+
 .box{
-    width: 60px;
-    height: 60px;
+    width: 62px;
+    height: 62px;
     border: 2px solid var(--empty);
-    margin: 4px;
     color: #fff;
     text-transform: uppercase;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: inherit;
-    font-size: 2.4rem;
-    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 700;
+    user-select: none;
+}
+
+.box.active{
+    border-color: var(--border-active);
+}
+
+.box.filled{
+    border-color: var(--border-active);
 }
 
 .box.empty{
     background-color: var(--empty);
+    border-color: var(--empty);
 }
 
 .box.wrong{
     background-color: var(--wrong);
+    border-color: var(--wrong);
 }
 
 .box.right{
     background-color: var(--right);
+    border-color: var(--right);
 }
 
+/* ── Message ── */
+.message{
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    min-height: 24px;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
- 
-  
+.restart-btn{
+    background-color: var(--right);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.restart-btn:hover{
+    opacity: 0.85;
+}
+
+/* ── Animations ── */
+.box.flip{
+    animation: flip 0.5s ease;
+}
+
+@keyframes flip{
+    0%  { transform: rotateX(0deg); }
+    50% { transform: rotateX(90deg); }
+    100%{ transform: rotateX(0deg); }
+}
+
+.box.pop{
+    animation: pop 0.1s ease;
+}
+
+@keyframes pop{
+    0%  { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100%{ transform: scale(1); }
+}
+
+/* ── Keyboard ── */
+.keyboard{
+    width: 100%;
+    max-width: 520px;
+    padding: 0 8px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.key-container{
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    justify-content: center;
+}
+
+.key, .large-key{
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--key-bg);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.2s;
+}
+
+.key{
+    flex: 1;
+    max-width: 44px;
+}
+
+.large-key{
+    flex: 1.5;
+    max-width: 66px;
+    font-size: 0.85rem;
+    padding: 0 6px;
+}
+
+.key:active, .large-key:active{
+    opacity: 0.8;
+}
+
+.space{
+    flex: 0.5;
+}
+
+/* ── Keyboard color states ── */
+.key.right, .large-key.right{
+    background-color: var(--right);
+}
+.key.wrong, .large-key.wrong{
+    background-color: var(--wrong);
+}
+.key.empty, .large-key.empty{
+    background-color: var(--empty);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px){
+    header h1{
+        font-size: 1.5rem;
+    }
+
+    .box{
+        width: 52px;
+        height: 52px;
+        font-size: 1.7rem;
+    }
+
+    .grid{
+        gap: 4px;
+    }
+
+    .keyboard{
+        gap: 5px;
+        padding: 0 4px 8px;
+    }
+
+    .key-container{
+        gap: 4px;
+    }
+
+    .key{
+        height: 48px;
+        font-size: 1rem;
+        max-width: 36px;
+    }
+
+    .large-key{
+        height: 48px;
+        font-size: 0.75rem;
+        max-width: 56px;
+    }
+}
+
+@media (max-width: 360px){
+    .box{
+        width: 44px;
+        height: 44px;
+        font-size: 1.4rem;
+    }
+
+    .key{
+        height: 44px;
+        font-size: 0.9rem;
+        max-width: 30px;
+    }
+
+    .large-key{
+        height: 44px;
+        font-size: 0.7rem;
+        max-width: 48px;
+    }
+}
